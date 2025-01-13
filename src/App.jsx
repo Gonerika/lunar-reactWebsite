@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 
 // Context for user profile
 import { UserProvider } from "./Components/Dashboard/UserContext";
+import UserProfile from './Components/Dashboard/UserProfile';
+
 
 // Auth
 import SignupLogin from './Components/auth/SignupLogin';
@@ -18,12 +20,22 @@ import Error from './Components/Error';
 // Dashboard
 import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './Components/Dashboard/Dashboard';
-// Students
+
+// Students Dashboard
 import StudentDashboard from './Components/Dashboard/students/StudentDashboard';
 
-import ApplyForNewCourse from './Components/Home/ApplyForNewCourse';
+// Employee Dashboard
+import EmployeeDashboard from './Components/Dashboard/Employee/EmployeeDashboard';
+
+// Job Dashboard
+import JobDashboard from './Components/Dashboard/Job/JobDashboard';
+
+// Course Dashboard
+import CourseDashboard from './Components/Dashboard/Course/CourseDashboard';
+
+
+//Home Page
 import ContactUs from './Components/Home/ContactUs';
-import UserProfile from './Components/Dashboard/UserProfile';
 import FeaturesDetail1 from './Components/Home/FeaturesDetail1';
 import FeaturesDetail2 from './Components/Home/FeaturesDetail2';
 import OurCourses from './Components/Home/OurCourses';
@@ -34,7 +46,8 @@ import About from './Components/Home/About';
 import OurProducts from './Components/Home/OurProducts';
 import JobForm from './Components/Home/JobForm';
 import Faq from './Components/Home/Faq';
-import JobDashboard from './Components/Dashboard/Job/JobDashboard';
+import ApplyForNewCourse from './Components/Home/ApplyForNewCourse';
+import ApplicationDashboard from './Components/Dashboard/Application/ApplicationDashboard';
 
 
 function App() {
@@ -61,6 +74,7 @@ function App() {
             <Route path='faq' element={<Faq />} />
           </Route>
 
+
           {/* For auth */}
           <Route path='auth/'>
             <Route path='login' element={<SignupLogin />} />
@@ -71,13 +85,18 @@ function App() {
             </Route>
           </Route>
 
+
           {/* For dashboard */}
           <Route path='dashboard/' element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
             <Route path='profile' element={<UserProfile />} />
             <Route path='student/' element={<StudentDashboard />} />
+            <Route path='employee/' element={<EmployeeDashboard/>}/>
             <Route path='job/' element={<JobDashboard/>}/>
+            <Route path='applications/' element={<ApplicationDashboard/>}/>
+            <Route path='course/' element={<CourseDashboard/>}/>
           </Route>
+
           {/* For error */}
           <Route path='*' element={<Error />} />
         </Routes>

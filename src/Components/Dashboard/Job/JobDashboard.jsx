@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Search, Briefcase, X, Plus } from "lucide-react";
+import {AddJobFormModal, ViewDetailsModal} from "./JobModals";
 
 const JobDashboard = () => {
   const [search, setSearch] = useState("");
@@ -177,7 +178,7 @@ const JobDashboard = () => {
                   <td>
                     <button
                       onClick={() => setSelectedJob(job)}
-                      className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500"
+                      className="bg-blue-600 text-white py-1 px-2 rounded-lg hover:bg-blue-500"
                     >
                       View
                     </button>
@@ -225,125 +226,20 @@ const JobDashboard = () => {
 
       {/* Add Job Form */}
       {showAddJobForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md transform transition-transform translate-y-[-20px] animate-slide-in">
-            <button
-              onClick={() => setShowAddJobForm(false)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Add Job</h3>
-            <form onSubmit={handleAddJob} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Title"
-                value={newJob.title}
-                onChange={(e) => setNewJob({ ...newJob, title: e.target.value })}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <textarea
-                placeholder="Description"
-                value={newJob.description}
-                onChange={(e) =>
-                  setNewJob({ ...newJob, description: e.target.value })
-                }
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              ></textarea>
-              <input
-                type="text"
-                placeholder="Location"
-                value={newJob.location}
-                onChange={(e) => setNewJob({ ...newJob, location: e.target.value })}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Salary"
-                value={newJob.salary}
-                onChange={(e) => setNewJob({ ...newJob, salary: e.target.value })}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <input
-                type="date"
-                placeholder="Deadline"
-                value={newJob.deadline}
-                onChange={(e) => setNewJob({ ...newJob, deadline: e.target.value })}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              />
-              <select
-                value={newJob.type}
-                onChange={(e) => setNewJob({ ...newJob, type: e.target.value })}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                required
-              >
-                <option value="" disabled>
-                  Select Job Type
-                </option>
-                <option value="Full-Time">Full-Time</option>
-                <option value="Part-Time">Part-Time</option>
-                <option value="Contract">Contract</option>
-                <option value="Internship">Internship</option>
-              </select>
-              <button
-                type="submit"
-                className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
-              >
-                Add Job
-              </button>
-            </form>
-          </div>
-        </div>
+        <AddJobFormModal
+          setShowAddJobForm={setShowAddJobForm}
+          setNewJob={setNewJob}
+          newJob={newJob}
+          handleAddJob={handleAddJob}
+        />
       )}
 
       {/* Details Card */}
       {selectedJob && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
-            <div className="flex items-end justify-end">
-              <button
-                onClick={() => setSelectedJob(false)}
-                className=" text-gray-600 hover:text-gray-800"
-              >
-                <X className="h-6 w-6" />
-              </button>
-
-            </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">
-              {selectedJob.title}
-            </h3>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Description:</strong> {selectedJob.description}
-            </p>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Location:</strong> {selectedJob.location}
-            </p>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Salary:</strong> {selectedJob.salary}
-            </p>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Deadline:</strong> {selectedJob.deadline}
-            </p>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Type:</strong> {selectedJob.type}
-            </p>
-            <p className="text-sm text-gray-600">
-              <strong>Status:</strong>{" "}
-              <span
-                className={`font-semibold ${
-                  selectedJob.status === "Open" ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {selectedJob.status}
-              </span>
-            </p>
-          </div>
-        </div>
+        <ViewDetailsModal
+          setSelectedJob={setSelectedJob}
+          selectedJob={selectedJob}
+        />
       )}
     </div>
   );
