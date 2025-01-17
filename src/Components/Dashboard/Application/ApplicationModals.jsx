@@ -94,31 +94,14 @@ export function AddApplicationFormModal({
 
                     {/* Contact Number */}
                     <div>
-                        <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
                             Contact Number
                         </label>
-                        <div className="flex items-center space-x-2">
-                            <select
-                                id="country-code"
-                                value={newApplication.countryCode}
-                                onChange={(e) =>
-                                    setNewApplication({ ...newApplication, countryCode: e.target.value })
-                                }
-                                className="p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                required
-                            >
-                                <option value="+1">+1 (USA)</option>
-                                <option value="+44">+44 (UK)</option>
-                                <option value="+91">+91 (India)</option>
-                                <option value="+977">+977 (Nepal)</option>
-                                <option value="+61">+61 (Australia)</option>
-                                <option value="+81">+81 (Japan)</option>
-                                {/* Add more country codes as needed */}
-                            </select>
                             <input
                                 id="contact"
                                 type="tel"
-                                placeholder="Enter phone number"
+                                placeholder="Enter contact number"
+                                pattern="[+]{0,1}[0-9]{10,15}" 
                                 value={newApplication.contact}
                                 onChange={(e) =>
                                     setNewApplication({ ...newApplication, contact: e.target.value })
@@ -126,7 +109,6 @@ export function AddApplicationFormModal({
                                 className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 required
                             />
-                        </div>
                     </div>
 
                     {/* Resume URL */}

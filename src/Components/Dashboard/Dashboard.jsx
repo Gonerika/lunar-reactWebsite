@@ -30,7 +30,7 @@ function Dashboard() {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
-      
+
 
       {/* Notifications Section */}
       <div className="mb-8 bg-white rounded-xl p-4 shadow-lg border border-blue-100">
@@ -162,11 +162,10 @@ function Dashboard() {
                     <td className="py-3 text-gray-800 font-medium">{payment.amount}</td>
                     <td className="py-3">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          payment.status === "Paid"
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${payment.status === "Paid"
                             ? "bg-green-100 text-green-600"
                             : "bg-yellow-100 text-yellow-600"
-                        }`}
+                          }`}
                       >
                         {payment.status}
                       </span>
@@ -230,11 +229,10 @@ function Dashboard() {
                 <div className="text-right">
                   <p className="text-sm font-medium text-gray-600">{class_.time}</p>
                   <span
-                    className={`text-xs px-2 py-1 rounded-full ${
-                      class_.status === "In Progress"
+                    className={`text-xs px-2 py-1 rounded-full ${class_.status === "In Progress"
                         ? "bg-green-100 text-green-600"
                         : "bg-blue-100 text-blue-600"
-                    }`}
+                      }`}
                   >
                     {class_.status}
                   </span>

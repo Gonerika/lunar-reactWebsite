@@ -113,92 +113,91 @@ const CourseDashboard = () => {
   }, [showAddCourseForm]);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-8 min-h-screen relative">
+    <div className="px-2 sm:px-4 lg:px-8 py-4 sm:py-8 min-h-screen relative">
       {/* Header Section */}
-      <div className="flex justify-end mb-6">
+      <div className="flex flex-col sm:flex-row justify-end items-stretch sm:items-center gap-2 mb-6">
         <button
           onClick={() => setShowAddCourseForm(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition text-sm sm:text-base"
         >
-          <Plus className="h-5 w-5" />
+          <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
           Add Course
         </button>
       </div>
 
       {/* Course Table */}
-      <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl p-3 sm:p-6 shadow-lg border border-blue-100">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <GraduationCap className="h-6 w-6 text-blue-600" />
+            <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
             Course Applications
           </h3>
           <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-3 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
             <input
               type="text"
               placeholder="Search"
-              className="w-full pl-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full pl-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-x-auto -mx-3 sm:mx-0">
+          <table className="w-full text-xs sm:text-sm">
             <thead>
               <tr className="border-b-2 border-gray-300">
-                <th className="py-3 text-left text-gray-600 font-medium">S.N</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Name</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Email</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Type</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Program</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Status</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Actions</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">S.N</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Name</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Email</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Type</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Program</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Status</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
               {currentCourses.map((course) => (
                 <tr key={course.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="py-3 text-gray-800">{course.sn}</td>
-                  <td className="py-3 text-gray-800">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-800">{course.sn}</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-800">
                     {course.name.length > 10
                       ? `${course.name.slice(0, 10)}...`
                       : course.name}
                   </td>
-                  <td className="py-3 text-gray-600">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">
                     {course.email.length > 10
                       ? `${course.email.slice(0, 10)}...`
                       : course.email}
                   </td>
-                  <td className="py-3 text-gray-600">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">
                     <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
                       {course.type}
                     </span>
                   </td>
-                  <td className="py-3 text-gray-600">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">
                     <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
                       {course.program}
                     </span>
                   </td>
                   <td className="py-3">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        course.status === "pending"
+                      className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${course.status === "pending"
                           ? "bg-yellow-100 text-yellow-800"
                           : course.status === "accepted"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
                     >
                       {course.status}
                     </span>
                   </td>
-                  <td className="py-3">
-                    <div className="flex gap-2">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3">
+                    <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => setSelectedCourse(course)}
-                        className="bg-blue-600 text-white py-1 px-2 rounded-lg hover:bg-blue-500 text-sm"
+                        className="bg-blue-600 text-white py-1 px-2 rounded-lg hover:bg-blue-500 text-xs sm:text-sm whitespace-nowrap"
                       >
                         View
                       </button>
@@ -206,19 +205,19 @@ const CourseDashboard = () => {
                         <>
                           <button
                             onClick={() => handleStatusChange(course.id, "accepted")}
-                            className="bg-green-600 text-white py-1 px-2 rounded-lg hover:bg-green-500 text-sm"
+                            className="bg-green-600 text-white py-1 px-2 rounded-lg hover:bg-green-500 text-xs sm:text-sm whitespace-nowrap"
                           >
                             Accept
                           </button>
                           <button
                             onClick={() => handleStatusChange(course.id, "rejected")}
-                            className="bg-red-600 text-white py-1 px-2 rounded-lg hover:bg-red-500 text-sm"
+                            className="bg-red-600 text-white py-1 px-2 rounded-lg hover:bg-red-500 text-xs sm:text-sm whitespace-nowrap"
                           >
                             Reject
                           </button>
                         </>
                       )}
-                     
+
                     </div>
                   </td>
                 </tr>
@@ -226,39 +225,37 @@ const CourseDashboard = () => {
             </tbody>
           </table>
           {filteredCourses.length === 0 && (
-            <div className="text-center py-4 text-gray-500">No courses found</div>
+            <div className="text-center py-4 text-gray-500 text-sm">No courses found</div>
           )}
         </div>
       </div>
 
       {/* Pagination */}
-      <div className="mt-6 flex justify-between items-center">
+      <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            currentPage === 1
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm w-full sm:w-auto justify-center ${currentPage === 1
               ? "bg-gray-300 text-gray-500"
               : "bg-blue-600 text-white hover:bg-blue-500"
-          }`}
+            }`}
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           Previous
         </button>
-        <span className="text-sm font-medium text-gray-600">
+        <span className="text-xs sm:text-sm font-medium text-gray-600">
           Page {currentPage} of {totalPages}
         </span>
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            currentPage === totalPages
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm w-full sm:w-auto justify-center  ${currentPage === totalPages
               ? "bg-gray-300 text-gray-500"
               : "bg-blue-600 text-white hover:bg-blue-500"
-          }`}
+            }`}
         >
           Next
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
       </div>
 

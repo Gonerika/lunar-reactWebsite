@@ -33,6 +33,18 @@ import JobDashboard from './Components/Dashboard/Job/JobDashboard';
 // Course Dashboard
 import CourseDashboard from './Components/Dashboard/Course/CourseDashboard';
 
+// Client Dashboard
+import ClientDashboard from './Components/Dashboard/Client/ClientDashboard';
+
+// Program Dashboard
+import ProgramDashboard from './Components/Dashboard/Program/ProgramDashboard';
+
+// Product Dashboard
+import ProductDashboard from './Components/Dashboard/Product/ProductDashboard';
+
+// Application Dashboard
+import ApplicationDashboard from './Components/Dashboard/Application/ApplicationDashboard';
+
 
 //Home Page
 import ContactUs from './Components/Home/ContactUs';
@@ -47,7 +59,6 @@ import OurProducts from './Components/Home/OurProducts';
 import JobForm from './Components/Home/JobForm';
 import Faq from './Components/Home/Faq';
 import ApplyForNewCourse from './Components/Home/ApplyForNewCourse';
-import ApplicationDashboard from './Components/Dashboard/Application/ApplicationDashboard';
 
 
 function App() {
@@ -95,6 +106,9 @@ function App() {
             <Route path='job/' element={<JobDashboard/>}/>
             <Route path='applications/' element={<ApplicationDashboard/>}/>
             <Route path='course/' element={<CourseDashboard/>}/>
+            <Route path='clients/' element={<ClientDashboard/>}/>
+            <Route path='program/' element={<ProgramDashboard/>}/>
+            <Route path='product/' element={<ProductDashboard/>}/>
           </Route>
 
           {/* For error */}

@@ -1,36 +1,36 @@
 import React from "react";
 import { X } from "lucide-react";
 
-export function AddEmployeeModal({
-  handleAddEmployee,
-  newEmployee,
-  setNewEmployee,
-  setShowAddEmployeeForm,
+export function AddClientModal({
+  handleAddClient,
+  newClient,
+  setNewClient,
+  setShowAddClientForm,
 }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-4 relative h-[90vh] overflow-y-auto">
         <button
-          onClick={() => setShowAddEmployeeForm(false)}
+          onClick={() => setShowAddClientForm(false)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-          Add New Employee
+          Add New Client
         </h3>
-        <form onSubmit={handleAddEmployee} className="space-y-4">
+        <form onSubmit={handleAddClient} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name
+              Full Name
             </label>
             <input
               type="text"
-              value={newEmployee.name}
+              value={newClient.fullName}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, name: e.target.value })
+                setNewClient({ ...newClient, fullName: e.target.value })
               }
-              placeholder="Enter employee name"
+              placeholder="Enter client name"
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
@@ -38,15 +38,15 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Position
+              Product
             </label>
             <input
               type="text"
-              value={newEmployee.position}
+              value={newClient.product}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, position: e.target.value })
+                setNewClient({ ...newClient, product: e.target.value })
               }
-              placeholder="Enter position"
+              placeholder="Enter product"
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
@@ -54,13 +54,13 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Date of Hire
+              Start Date
             </label>
             <input
               type="date"
-              value={newEmployee.dateOfHire}
+              value={newClient.startDate}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, dateOfHire: e.target.value })
+                setNewClient({ ...newClient, startDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -69,13 +69,13 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Arrival Time
+              End Date
             </label>
             <input
-              type="time"
-              value={newEmployee.arrivalTime}
+              type="date"
+              value={newClient.endDate}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, arrivalTime: e.target.value })
+                setNewClient({ ...newClient, endDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -84,13 +84,16 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Departure Time
+              Contact No.
             </label>
             <input
-              type="time"
-              value={newEmployee.departureTime}
+            id="contact"
+              type="tel"
+              placeholder="Enter contact number"
+              pattern="[+]{0,1}[0-9]{10,15}" 
+              value={newClient.contactNo}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, departureTime: e.target.value })
+                setNewClient({ ...newClient, contactNo: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -99,37 +102,39 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Salary
-            </label>
-            <input
-              type="number"
-              value={newEmployee.salary}
-              onChange={(e) =>
-                setNewEmployee({ ...newEmployee, salary: e.target.value })
-              }
-              placeholder="Enter salary"
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Employment Type
+              Package
             </label>
             <select
-              value={newEmployee.type}
+              value={newClient.package}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, type: e.target.value })
+                setNewClient({ ...newClient, package: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             >
-              <option value="">Select type</option>
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="contract">Contract</option>
-              <option value="internship">Internship</option>
+              <option value="">Select package</option>
+              <option value="1 Month">1 Month</option>
+              <option value="6 Month">6 Month</option>
+              <option value="1 Year">1 Year</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Status
+            </label>
+            <select
+              value={newClient.status}
+              onChange={(e) =>
+                setNewClient({ ...newClient, status: e.target.value })
+              }
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              required
+            >
+              <option value="">Select status</option>
+              <option value="New">New</option>
+              <option value="Expired">Expired</option>
+              <option value="Re-Newed">Re-Newed</option>
             </select>
           </div>
 
@@ -137,7 +142,7 @@ export function AddEmployeeModal({
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
           >
-            Add Employee
+            Add Client
           </button>
         </form>
       </div>
@@ -145,49 +150,50 @@ export function AddEmployeeModal({
   );
 }
 
-export function ViewEmployeeDetailsModal({
-  setSelectedEmployee,
-  selectedEmployee,
+export function ViewClientDetailsModal({
+  setSelectedClient,
+  selectedClient,
 }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative  h-[70vh] overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative h-[70vh] overflow-y-auto">
         <button
-          onClick={() => setSelectedEmployee(null)}
+          onClick={() => setSelectedClient(null)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 text-center mb-6">
-          Employee Details
+          Client Details
         </h3>
         <div className="space-y-4">
           <p>
-            <span className="font-semibold">Name:</span> {selectedEmployee.name}
+            <span className="font-semibold">Full Name:</span> {selectedClient.fullName}
           </p>
           <p>
-            <span className="font-semibold">Position:</span>{" "}
-            {selectedEmployee.position}
+            <span className="font-semibold">Product:</span> {selectedClient.product}
           </p>
           <p>
-            <span className="font-semibold">Date of Hire:</span>{" "}
-            {selectedEmployee.dateOfHire}
+            <span className="font-semibold">Start Date:</span> {selectedClient.startDate}
           </p>
           <p>
-            <span className="font-semibold">Arrival Time:</span>{" "}
-            {selectedEmployee.arrivalTime}
+            <span className="font-semibold">End Date:</span> {selectedClient.endDate}
           </p>
           <p>
-            <span className="font-semibold">Departure Time:</span>{" "}
-            {selectedEmployee.departureTime}
+            <span className="font-semibold">Contact No:</span> {selectedClient.contactNo}
           </p>
           <p>
-            <span className="font-semibold">Salary:</span> Rs.
-            {selectedEmployee.salary}
+            <span className="font-semibold">Package:</span> {selectedClient.package}
           </p>
           <p>
-            <span className="font-semibold">Employment Type:</span>{" "}
-            {selectedEmployee.type}
+            <span className="font-semibold">Status:</span>{" "}
+            <span className={`px-2 py-1 rounded-full text-sm ${
+              selectedClient.status === 'New' ? 'bg-green-100 text-green-800' :
+              selectedClient.status === 'Expired' ? 'bg-red-100 text-red-800' :
+              'bg-blue-100 text-blue-800'
+            }`}>
+              {selectedClient.status}
+            </span>
           </p>
         </div>
       </div>
@@ -195,40 +201,40 @@ export function ViewEmployeeDetailsModal({
   );
 }
 
-export function EditEmployeeModal({
-  setShowEditEmployeeForm,
-  employeeToEdit,
-  handleUpdateEmployee,
+export function EditClientModal({
+  setShowEditClientForm,
+  clientToEdit,
+  handleUpdateClient,
 }) {
-  const [editedEmployee, setEditedEmployee] = React.useState(employeeToEdit);
+  const [editedClient, setEditedClient] = React.useState(clientToEdit);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdateEmployee(editedEmployee);
+    handleUpdateClient(editedClient);
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-4 relative h-[90vh] overflow-y-auto">
         <button
-          onClick={() => setShowEditEmployeeForm(false)}
+          onClick={() => setShowEditClientForm(false)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-          Edit Employee
+          Edit Client
         </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name
+              Full Name
             </label>
             <input
               type="text"
-              value={editedEmployee.name}
+              value={editedClient.fullName}
               onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, name: e.target.value })
+                setEditedClient({ ...editedClient, fullName: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -237,13 +243,13 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Position
+              Product
             </label>
             <input
               type="text"
-              value={editedEmployee.position}
+              value={editedClient.product}
               onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, position: e.target.value })
+                setEditedClient({ ...editedClient, product: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -252,16 +258,13 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Date of Hire
+              Start Date
             </label>
             <input
               type="date"
-              value={editedEmployee.dateOfHire}
+              value={editedClient.startDate}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  dateOfHire: e.target.value,
-                })
+                setEditedClient({ ...editedClient, startDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -270,16 +273,13 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Arrival Time
+              End Date
             </label>
             <input
-              type="time"
-              value={editedEmployee.arrivalTime}
+              type="date"
+              value={editedClient.endDate}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  arrivalTime: e.target.value,
-                })
+                setEditedClient({ ...editedClient, endDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -288,16 +288,15 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Departure Time
+              Contact Number
             </label>
             <input
-              type="time"
-              value={editedEmployee.departureTime}
+            id="contact"
+              type="tel"
+              placeholder="Enter phone number"
+              value={editedClient.contactNo}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  departureTime: e.target.value,
-                })
+                setEditedClient({ ...editedClient, contactNo: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -306,35 +305,37 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Salary
-            </label>
-            <input
-              type="number"
-              value={editedEmployee.salary}
-              onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, salary: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Employment Type
+              Package
             </label>
             <select
-              value={editedEmployee.type}
+              value={editedClient.package}
               onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, type: e.target.value })
+                setEditedClient({ ...editedClient, package: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             >
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="contract">Contract</option>
-              <option value="internship">Internship</option>
+              <option value="1 Month">1 Month</option>
+              <option value="6 Month">6 Month</option>
+              <option value="1 Year">1 Year</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Status
+            </label>
+            <select
+              value={editedClient.status}
+              onChange={(e) =>
+                setEditedClient({ ...editedClient, status: e.target.value })
+              }
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              required
+            >
+              <option value="New">New</option>
+              <option value="Expired">Expired</option>
+              <option value="Re-Newed">Re-Newed</option>
             </select>
           </div>
 
@@ -342,7 +343,7 @@ export function EditEmployeeModal({
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
           >
-            Update Employee
+            Update Client
           </button>
         </form>
       </div>
@@ -350,9 +351,9 @@ export function EditEmployeeModal({
   );
 }
 
-export function DeleteEmployeeModal({
+export function DeleteClientModal({
   setShowDeleteDialog,
-  employeeToDelete,
+  clientToDelete,
   confirmDelete,
 }) {
   return (
@@ -362,7 +363,7 @@ export function DeleteEmployeeModal({
           Confirm Delete
         </h3>
         <p className="text-gray-600 mb-6">
-          Are you sure you want to delete employee "{employeeToDelete.name}"? This
+          Are you sure you want to delete client "{clientToDelete.fullName}"? This
           action cannot be undone.
         </p>
         <div className="flex justify-end space-x-4">

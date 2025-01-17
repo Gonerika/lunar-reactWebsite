@@ -1,36 +1,36 @@
 import React from "react";
 import { X } from "lucide-react";
 
-export function AddEmployeeModal({
-  handleAddEmployee,
-  newEmployee,
-  setNewEmployee,
-  setShowAddEmployeeForm,
+export function AddProgramModal({
+  handleAddProgram,
+  newProgram,
+  setNewProgram,
+  setShowAddProgramForm,
 }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-4 relative h-[90vh] overflow-y-auto">
         <button
-          onClick={() => setShowAddEmployeeForm(false)}
+          onClick={() => setShowAddProgramForm(false)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-          Add New Employee
+          Add New Program
         </h3>
-        <form onSubmit={handleAddEmployee} className="space-y-4">
+        <form onSubmit={handleAddProgram} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name
+              Title
             </label>
             <input
               type="text"
-              value={newEmployee.name}
+              value={newProgram.title}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, name: e.target.value })
+                setNewProgram({ ...newProgram, title: e.target.value })
               }
-              placeholder="Enter employee name"
+              placeholder="Enter program title"
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
@@ -38,29 +38,13 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Position
-            </label>
-            <input
-              type="text"
-              value={newEmployee.position}
-              onChange={(e) =>
-                setNewEmployee({ ...newEmployee, position: e.target.value })
-              }
-              placeholder="Enter position"
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Date of Hire
+              Start Date
             </label>
             <input
               type="date"
-              value={newEmployee.dateOfHire}
+              value={newProgram.startDate}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, dateOfHire: e.target.value })
+                setNewProgram({ ...newProgram, startDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -69,13 +53,13 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Arrival Time
+              End Date
             </label>
             <input
-              type="time"
-              value={newEmployee.arrivalTime}
+              type="date"
+              value={newProgram.endDate}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, arrivalTime: e.target.value })
+                setNewProgram({ ...newProgram, endDate: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -84,60 +68,47 @@ export function AddEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Departure Time
+              Description
             </label>
-            <input
-              type="time"
-              value={newEmployee.departureTime}
+            <textarea
+              value={newProgram.description}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, departureTime: e.target.value })
+                setNewProgram({ ...newProgram, description: e.target.value })
               }
+              placeholder="Enter program description"
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              rows={4}
               required
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Salary
-            </label>
-            <input
-              type="number"
-              value={newEmployee.salary}
-              onChange={(e) =>
-                setNewEmployee({ ...newEmployee, salary: e.target.value })
-              }
-              placeholder="Enter salary"
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Employment Type
+              Type
             </label>
             <select
-              value={newEmployee.type}
+              value={newProgram.type}
               onChange={(e) =>
-                setNewEmployee({ ...newEmployee, type: e.target.value })
+                setNewProgram({ ...newProgram, type: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             >
               <option value="">Select type</option>
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="contract">Contract</option>
-              <option value="internship">Internship</option>
+              <option value="training">Training</option>
+              <option value="workshop">Workshop</option>
+              <option value="seminar">Seminar</option>
+              <option value="conference">Conference</option>
             </select>
           </div>
+
+          
 
           <button
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
           >
-            Add Employee
+            Add Program
           </button>
         </form>
       </div>
@@ -145,90 +116,82 @@ export function AddEmployeeModal({
   );
 }
 
-export function ViewEmployeeDetailsModal({
-  setSelectedEmployee,
-  selectedEmployee,
+export function ViewProgramDetailsModal({
+  setSelectedProgram,
+  selectedProgram,
 }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative  h-[70vh] overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md mx-4 relative h-[70vh] overflow-y-auto">
         <button
-          onClick={() => setSelectedEmployee(null)}
+          onClick={() => setSelectedProgram(null)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 text-center mb-6">
-          Employee Details
+          Program Details
         </h3>
         <div className="space-y-4">
           <p>
-            <span className="font-semibold">Name:</span> {selectedEmployee.name}
+            <span className="font-semibold">Title:</span> {selectedProgram.title}
           </p>
           <p>
-            <span className="font-semibold">Position:</span>{" "}
-            {selectedEmployee.position}
+            <span className="font-semibold">Start Date:</span>{" "}
+            {selectedProgram.startDate}
           </p>
           <p>
-            <span className="font-semibold">Date of Hire:</span>{" "}
-            {selectedEmployee.dateOfHire}
+            <span className="font-semibold">End Date:</span>{" "}
+            {selectedProgram.endDate}
           </p>
           <p>
-            <span className="font-semibold">Arrival Time:</span>{" "}
-            {selectedEmployee.arrivalTime}
+            <span className="font-semibold">Description:</span>{" "}
+            {selectedProgram.description}
           </p>
           <p>
-            <span className="font-semibold">Departure Time:</span>{" "}
-            {selectedEmployee.departureTime}
+            <span className="font-semibold">Type:</span> {selectedProgram.type}
           </p>
-          <p>
-            <span className="font-semibold">Salary:</span> Rs.
-            {selectedEmployee.salary}
-          </p>
-          <p>
-            <span className="font-semibold">Employment Type:</span>{" "}
-            {selectedEmployee.type}
-          </p>
+          
         </div>
       </div>
     </div>
   );
 }
 
-export function EditEmployeeModal({
-  setShowEditEmployeeForm,
-  employeeToEdit,
-  handleUpdateEmployee,
+export function EditProgramModal({
+  setShowEditProgramForm,
+  programToEdit,
+  handleUpdateProgram,
 }) {
-  const [editedEmployee, setEditedEmployee] = React.useState(employeeToEdit);
+  const [editedProgram, setEditedProgram] = React.useState(programToEdit);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdateEmployee(editedEmployee);
+    handleUpdateProgram(editedProgram);
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg mx-4 relative h-[90vh] overflow-y-auto">
         <button
-          onClick={() => setShowEditEmployeeForm(false)}
+          onClick={() => setShowEditProgramForm(false)}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
         >
           <X className="h-6 w-6" />
         </button>
         <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
-          Edit Employee
+          Edit Program
         </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Name
+              Title
             </label>
             <input
               type="text"
-              value={editedEmployee.name}
+              value={editedProgram.title}
               onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, name: e.target.value })
+                setEditedProgram({ ...editedProgram, title: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
@@ -237,30 +200,15 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Position
-            </label>
-            <input
-              type="text"
-              value={editedEmployee.position}
-              onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, position: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Date of Hire
+              Start Date
             </label>
             <input
               type="date"
-              value={editedEmployee.dateOfHire}
+              value={editedProgram.startDate}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  dateOfHire: e.target.value,
+                setEditedProgram({
+                  ...editedProgram,
+                  startDate: e.target.value,
                 })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -270,15 +218,15 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Arrival Time
+              End Date
             </label>
             <input
-              type="time"
-              value={editedEmployee.arrivalTime}
+              type="date"
+              value={editedProgram.endDate}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  arrivalTime: e.target.value,
+                setEditedProgram({
+                  ...editedProgram,
+                  endDate: e.target.value,
                 })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -288,61 +236,48 @@ export function EditEmployeeModal({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Departure Time
+              Description
             </label>
-            <input
-              type="time"
-              value={editedEmployee.departureTime}
+            <textarea
+              value={editedProgram.description}
               onChange={(e) =>
-                setEditedEmployee({
-                  ...editedEmployee,
-                  departureTime: e.target.value,
+                setEditedProgram({
+                  ...editedProgram,
+                  description: e.target.value,
                 })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              rows={4}
               required
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Salary
-            </label>
-            <input
-              type="number"
-              value={editedEmployee.salary}
-              onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, salary: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Employment Type
+              Type
             </label>
             <select
-              value={editedEmployee.type}
+              value={editedProgram.type}
               onChange={(e) =>
-                setEditedEmployee({ ...editedEmployee, type: e.target.value })
+                setEditedProgram({ ...editedProgram, type: e.target.value })
               }
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             >
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="contract">Contract</option>
-              <option value="internship">Internship</option>
+              <option value="training">Training</option>
+              <option value="workshop">Workshop</option>
+              <option value="seminar">Seminar</option>
+              <option value="conference">Conference</option>
             </select>
           </div>
+
+          
 
           <button
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
           >
-            Update Employee
+            Update Program
           </button>
         </form>
       </div>
@@ -350,9 +285,9 @@ export function EditEmployeeModal({
   );
 }
 
-export function DeleteEmployeeModal({
+export function DeleteProgramModal({
   setShowDeleteDialog,
-  employeeToDelete,
+  programToDelete,
   confirmDelete,
 }) {
   return (
@@ -362,7 +297,7 @@ export function DeleteEmployeeModal({
           Confirm Delete
         </h3>
         <p className="text-gray-600 mb-6">
-          Are you sure you want to delete employee "{employeeToDelete.name}"? This
+          Are you sure you want to delete program "{programToDelete.title}"? This
           action cannot be undone.
         </p>
         <div className="flex justify-end space-x-4">

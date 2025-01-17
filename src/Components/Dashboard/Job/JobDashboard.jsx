@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Search, Briefcase, X, Plus } from "lucide-react";
-import {AddJobFormModal, ViewDetailsModal} from "./JobModals";
+import { AddJobFormModal, ViewDetailsModal } from "./JobModals";
 
 const JobDashboard = () => {
   const [search, setSearch] = useState("");
@@ -104,81 +104,83 @@ const JobDashboard = () => {
   }, [showAddJobForm]);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-8 min-h-screen relative">
+    <div className="px-2 sm:px-4 lg:px-8 py-4 sm:py-8 min-h-screen relative">
       {/* Header Section */}
-      <div className="flex justify-end mb-6">
+      <div className="flex flex-col sm:flex-row justify-end items-stretch sm:items-center gap-2 mb-6">
         <button
           onClick={() => setShowAddJobForm(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition text-sm sm:text-base"
         >
-          <Plus className="h-5 w-5" />
+          <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
           Add Job
         </button>
       </div>
 
       {/* Job Table */}
-      <div className="bg-white rounded-xl p-6 shadow-lg border border-blue-100">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-            <Briefcase className="h-6 w-6 text-blue-600" />
+      <div className="bg-white rounded-xl p-3 sm:p-6 shadow-lg border border-blue-100">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-800 flex items-center gap-2">
+            <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
             Job Openings
           </h3>
           <div className="relative w-full sm:w-64">
-            <Search className="absolute left-3 top-3 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4 sm:h-5 sm:w-5" />
             <input
               type="text"
               placeholder="Search"
-              className="w-full pl-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full pl-10 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-x-auto -mx-3 sm:mx-0">
+          <table className="w-full text-xs sm:text-sm">
             <thead>
               <tr className="border-b-2 border-gray-300">
-                <th className="py-3 text-left text-gray-600 font-medium">Title</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Description</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Location</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Salary</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Deadline</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Type</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Status</th>
-                <th className="py-3 text-left text-gray-600 font-medium">Details</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">S.N.</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Title</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Description</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Location</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Salary</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Deadline</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Type</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Status</th>
+                <th className="py-3 px-2 sm:px-3 text-left text-gray-600 font-medium">Details</th>
               </tr>
             </thead>
             <tbody>
-              {currentJobs.map((job) => (
+              {currentJobs.map((job, index) => (
                 <tr key={job.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="py-3 text-gray-800 font-medium">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-800">{indexOfFirstJob + index + 1}</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-800">
                     {job.title.length > 10 ? `${job.title.slice(0, 10)}...` : job.title}
                   </td>
-                  <td className="py-3 text-gray-600">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">
                     {job.description.length > 10
                       ? `${job.description.slice(0, 10)}...`
                       : job.description}
                   </td>
-                  <td className="py-3 text-gray-600">
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">
                     {job.location.length > 10
                       ? `${job.location.slice(0, 10)}...`
                       : job.location}
                   </td>
-                  <td className="py-3 text-gray-800 font-medium">{job.salary}</td>
-                  <td className="py-3 text-gray-600">{job.deadline}</td>
-                  <td className="py-3 text-gray-600">{job.type}</td>
-                  <td
-                    className={`py-3 font-medium ${
-                      job.status === "Open" ? "text-green-600" : "text-red-600"
-                    }`}
-                  >
-                    {job.status}
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">{job.salary}</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">{job.deadline}</td>
+                  <td className="py-2 sm:py-3 px-2 sm:px-3 text-gray-600">{job.type}</td>
+                  <td className="py-3">
+                    <span className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${job.status === "Open" ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {job.status}
+                    </span>
                   </td>
                   <td>
                     <button
                       onClick={() => setSelectedJob(job)}
-                      className="bg-blue-600 text-white py-1 px-2 rounded-lg hover:bg-blue-500"
+                      className="bg-blue-600 text-white py-1 px-2 rounded-lg hover:bg-blue-500 text-xs sm:text-sm whitespace-nowrap"
                     >
                       View
                     </button>
@@ -188,39 +190,37 @@ const JobDashboard = () => {
             </tbody>
           </table>
           {filteredJobs.length === 0 && (
-            <div className="text-center py-4 text-gray-500">No jobs found</div>
+            <div className="text-center py-4 text-gray-500 text-sm">No results found</div>
           )}
         </div>
       </div>
 
       {/* Pagination */}
-      <div className="mt-6 flex justify-between items-center">
+      <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            currentPage === 1
-              ? "bg-gray-300 text-gray-500"
-              : "bg-blue-600 text-white hover:bg-blue-500"
-          }`}
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm w-full sm:w-auto justify-center ${currentPage === 1
+            ? "bg-gray-300 text-gray-500"
+            : "bg-blue-600 text-white hover:bg-blue-500"
+            }`}
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
           Previous
         </button>
-        <span className="text-sm font-medium text-gray-600">
+        <span className="text-xs sm:text-sm font-medium text-gray-600">
           Page {currentPage} of {totalPages}
         </span>
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-            currentPage === totalPages
-              ? "bg-gray-300 text-gray-500"
-              : "bg-blue-600 text-white hover:bg-blue-500"
-          }`}
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm w-full sm:w-auto justify-center ${currentPage === totalPages
+            ? "bg-gray-300 text-gray-500"
+            : "bg-blue-600 text-white hover:bg-blue-500"
+            }`}
         >
           Next
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
       </div>
 
